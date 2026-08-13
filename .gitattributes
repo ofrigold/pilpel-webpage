@@ -1,0 +1,4 @@
+# This folder is also the live working directory, so git must never rewrite a
+# file in it. `-text` disables all end-of-line conversion: what is on disk is
+# what is committed, byte for byte.
+* -text
