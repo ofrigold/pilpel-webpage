@@ -250,11 +250,11 @@
             display: inline-block;
         }
 
-        .author:hover {
+        a.author:hover {
             color: var(--c1);
         }
 
-        .author::after {
+        a.author::after {
             content: '';
             position: absolute;
             bottom: -2px;
@@ -265,7 +265,7 @@
             transition: width 0.3s ease;
         }
 
-        .author:hover::after {
+        a.author:hover::after {
             width: 100%;
         }
 
@@ -820,22 +820,6 @@
             transform: translateX(-50%);
         }
 
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            color: #606060;
-            border-top: 1px solid rgba(var(--c1-rgb), 0.1);
-            font-size: 0.9rem;
-            line-height: 1.8;
-        }
-
-        footer a {
-            color: #808080;
-            text-decoration: none;
-        }
-
-        footer a:hover { color: var(--c1); }
-
         @media (max-width: 900px) {
             header { padding: 0.8rem 1.2rem; }
             nav { gap: 0.8rem; }
@@ -935,12 +919,12 @@
             <p class="venue">bioRxiv preprint &middot; 2026</p>
 
             <div class="authors">
-                <span class="author">Ofri Goldenberg<sup>1</sup></span>
+                <a class="author" href="mailto:goldenberg.ofri@gmail.com">Ofri Goldenberg<sup>1</sup></a>
                 <span class="author">Tal Daniel<sup>2</sup></span>
                 <span class="author">Dafei Xiao<sup>3</sup></span>
                 <span class="author">Yael Shalev Ezra<sup>1</sup></span>
                 <span class="author">Onit Alalouf<sup>1</sup></span>
-                <span class="author">Yoav Shechtman<sup>1,4,*</sup></span>
+                <a class="author" href="mailto:yoavsh@technion.ac.il">Yoav Shechtman<sup>1,4,*</sup></a>
             </div>
 
             <div class="affiliations">
@@ -1208,16 +1192,6 @@
 }</pre>
             </div>
         </section>
-
-        <footer>
-            <p>PILPEL &mdash; Physics-Informed Latent Particles for Emitter Localization</p>
-            <p>
-                <a href="https://github.com/ofrigold/pilpel">Code</a> &middot;
-                <a href="https://doi.org/10.1101/2025.07.16.665148">bioRxiv</a> &middot;
-                <a href="mailto:goldenberg.ofri@gmail.com">Contact</a>
-            </p>
-            <p>&copy; 2026 Ofri Goldenberg</p>
-        </footer>
     </div>
 
     <script>
