@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PILPEL &mdash; Physics-Informed Latent Particles for Emitter Localization</title>
     <meta name="description" content="A physics-informed, self-supervised generative model that learns the experiment itself and generates realistic, fully labeled training data for single-molecule localization microscopy.">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%23ffffff;stop-opacity:1'/%3E%3Cstop offset='45%25' style='stop-color:%235cc94f;stop-opacity:0.9'/%3E%3Cstop offset='100%25' style='stop-color:%235cc94f;stop-opacity:0'/%3E%3C/radialGradient%3E%3CradialGradient id='m' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%23ffffff;stop-opacity:1'/%3E%3Cstop offset='45%25' style='stop-color:%2300b8a9;stop-opacity:0.9'/%3E%3Cstop offset='100%25' style='stop-color:%2300b8a9;stop-opacity:0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='%23000'/%3E%3Ccircle cx='50' cy='22' r='13' fill='url(%23g)'/%3E%3Ccircle cx='50' cy='78' r='13' fill='url(%23g)'/%3E%3Ccircle cx='22' cy='50' r='11' fill='url(%23m)'/%3E%3Ccircle cx='78' cy='50' r='11' fill='url(%23m)'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%23ffffff;stop-opacity:1'/%3E%3Cstop offset='45%25' style='stop-color:%237cc543;stop-opacity:0.9'/%3E%3Cstop offset='100%25' style='stop-color:%237cc543;stop-opacity:0'/%3E%3C/radialGradient%3E%3CradialGradient id='m' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%23ffffff;stop-opacity:1'/%3E%3Cstop offset='45%25' style='stop-color:%2300b8a9;stop-opacity:0.9'/%3E%3Cstop offset='100%25' style='stop-color:%2300b8a9;stop-opacity:0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='%23000'/%3E%3Ccircle cx='50' cy='22' r='13' fill='url(%23g)'/%3E%3Ccircle cx='50' cy='78' r='13' fill='url(%23g)'/%3E%3Ccircle cx='22' cy='50' r='11' fill='url(%23m)'/%3E%3Ccircle cx='78' cy='50' r='11' fill='url(%23m)'/%3E%3C/svg%3E">
     <style>
         :root {
-            --c1: #5cc94f;          /* green pepper - primary */
-            --c1-rgb: 92, 201, 79;
-            --c1-hi: #8ade7f;
+            --c1: #7cc543;          /* green pepper - primary */
+            --c1-rgb: 124, 197, 67;
+            --c1-hi: #a7d982;
             --c2: #22d3ee;          /* cyan - secondary accent */
             --c2-rgb: 34, 211, 238;
             --c2-hi: #67e8f9;
             --c3: #00b8a9;          /* mint/teal - bridges the two (deck) */
             --c3-rgb: 0, 184, 169;
-            --ok: #5cc94f;
-            --ok-rgb: 92, 201, 79;
+            --ok: #7cc543;
+            --ok-rgb: 124, 197, 67;
         }
 
         * {
@@ -85,6 +85,9 @@
         }
 
         .nav-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
             font-size: 1.15rem;
             font-weight: 800;
             letter-spacing: 0.1em;
@@ -95,6 +98,13 @@
 
         .nav-brand:hover {
             opacity: 0.75;
+        }
+
+        .brand-icon {
+            display: block;
+            height: 1.15em;
+            width: auto;
+            transform: rotate(0deg);
         }
 
         .nav-links {
@@ -200,12 +210,23 @@
         }
 
         h1 {
+            position: relative;
             font-size: 5rem;
             font-weight: 800;
             letter-spacing: 0.12em;
             margin-bottom: 0.5rem;
             color: var(--c1);
             line-height: 1.15;
+        }
+
+        .title-icon {
+            position: absolute;
+            left: -0.30em;
+            top: -0.16em;
+            height: 0.62em;
+            width: auto;
+            transform: rotate(0deg);
+            pointer-events: none;
         }
 
         .expansion {
@@ -771,6 +792,14 @@
             line-height: 1.8;
         }
 
+        .fig-caption {
+            color: #b8b8b8;
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-top: 1.2rem;
+            text-align: left;
+        }
+
         .prose + .prose { margin-top: 1.2rem; }
 
         .prose strong { color: #e6e6e6; font-weight: 600; }
@@ -891,14 +920,14 @@
     <div class="content">
         <header id="sticky-header">
             <nav>
-                <a href="#top" class="nav-brand">PILPEL</a>
+                <a href="#top" class="nav-brand">PILPEL<img class="brand-icon" src="assets/pilpel_icon.png" alt=""></a>
                 <div class="nav-links">
                     <a href="#abstract">Abstract</a>
                     <a href="#architecture">Architecture</a>
                     <a href="#results">Results</a>
                     <a href="#acknowledgments">Acknowledgments</a>
                     <a href="#citation">Citation</a>
-                    <a href="PILPEL_preprint.pdf" class="nav-btn">Paper</a>
+                    <a href="PILPEL_full.pdf" class="nav-btn">Paper</a>
                     <a href="https://github.com/ofrigold/pilpel" class="nav-btn code">Code</a>
                 </div>
             </nav>
@@ -913,7 +942,7 @@
         </div>
 
         <div class="hero" id="top">
-            <h1>PILPEL</h1>
+            <h1><img class="title-icon" src="assets/pilpel_icon.png" alt="">PILPEL</h1>
             <p class="expansion">Physics-Informed Latent Particles for Emitter Localization</p>
             <p class="subtitle">Self-supervised generation of realistic training data enables nanoscale localization in challenging conditions</p>
             <p class="venue">bioRxiv preprint &middot; 2026</p>
@@ -964,7 +993,7 @@
             </div>
 
             <div class="links">
-                <a href="PILPEL_preprint.pdf" class="icon-btn">
+                <a href="PILPEL_full.pdf" class="icon-btn">
                     <div class="icon-btn-circle">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L18.5 9H14V4.5zM8 13h8v1.5H8V13zm0 3.5h8V18H8v-1.5z"/>
@@ -1105,10 +1134,23 @@
             <h2>Architecture</h2>
 
             <div class="video-card">
-                <video src="assets/architecture.mp4" poster="assets/architecture_poster.png"
-                       autoplay loop muted playsinline preload="metadata"
-                       aria-label="Animated build-up of the PILPEL architecture: input image, PSF prior and proposals, encoder, latent particles, physical and local-background decoders, global background, and the summed reconstruction that yields labeled generated data."></video>
+                <img src="assets/architecture_poster.png"
+                     alt="The PILPEL architecture: input image, PSF prior and proposals, encoder, latent particles, physical and local-background decoders, global background, and the summed reconstruction that yields labeled generated data.">
             </div>
+            <p class="fig-caption">Encoding-decoding scheme with a latent representation of PSF-objects.
+                The model divides the input image into overlapping patches and performs template matching
+                using a precomputed PSF dictionary (standard 2D or engineered 3D PSFs, top left) to propose
+                candidate emitter locations. Patches around these locations are then processed by an encoder
+                that generates disentangled latent vectors encoding spatial coordinates, intensity, and
+                appearance features of the local background. A decoder reconstructs the image using a
+                physics-based PSF generator and a CNN-based local-background generator. These generated
+                patches, along with a separately modeled global background, are combined to form the final
+                reconstructed image. The entire system is trained end-to-end within a VAE framework,
+                balancing reconstruction accuracy and latent regularization. Because the coordinates passed
+                to the physical decoder are the ground truth of the generated image by construction,
+                re-sampling them together with the latent attributes and passing them through the decoder
+                provides new labeled images, with known {x, y, z} per emitter, that serve as training data
+                for supervised localization networks. Scale bar, 2 &micro;m.</p>
         </section>
 
         <section id="results">
@@ -1670,7 +1712,7 @@
         var RESET = ['.p-input', '.l-input', '.a1', '.l-recon', '.l-psf', '.l-local',
                      '.l-global', '.l-noise', '.a2', '.p-gen', '.l-gen'];
 
-        var i = 0, timer = null, paused = false;
+        var i = 0, timer = null, paused = false, started = false;
 
         function reset() {
             RESET.forEach(function (s) { show(s, false); });
@@ -1694,10 +1736,18 @@
             RESET.concat(['#cPbox', '.l-pilpel']).forEach(function (s) { show(s, true); });
             stack.classList.add('fan');
             gen.still();          /* one static frame; the rAF loop never starts */
-        } else step();
+        } else if (window.IntersectionObserver) {
+            var io = new IntersectionObserver(function (entries, obs) {
+                if (!entries[0].isIntersecting) return;
+                obs.disconnect();
+                started = true;
+                step();
+            }, { threshold: 0, rootMargin: '0px 0px -20% 0px' });
+            io.observe(root);
+        } else { started = true; step(); }
 
         root.addEventListener('click', function () {
-            if (reduce) return;
+            if (reduce || !started) return;
             paused = !paused;
             root.style.filter = paused ? 'saturate(.85) brightness(.92)' : '';
             gen.setPaused(paused);
